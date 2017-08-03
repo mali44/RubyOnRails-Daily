@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h4>Günlük Listesi</h4>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th colspan="2">Günlük Başlığı</th>
+    <th>Yazar</th>
+    <th>Yorum Sayısı</th>
+    <th>Yayınlanma Tarihi</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @posts.each_with_index do |post, index| %>
+    <tr>
+      <td><%= index + 1 %></td>
+      <td colspan="2">
+        <%= link_to post.title, post_path(post) %>
+      </td>
+      <td>
+        <%= link_to post.author.full_name, user_path(post.author) %>
+      </td>
+      <td>
+        <%= post.comments.count %>
+      </td>
+      <td>
+        <%= post.created_at.to_formatted_s(:long) %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
